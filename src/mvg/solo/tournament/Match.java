@@ -9,7 +9,8 @@ import java.util.*;
 abstract class Match {
 
     private final int id;
-    private final Map<Team, List<ScoringEvent>> teamResults = new HashMap<>();
+    private final NavigableMap<Team, List<ScoringEvent>> teamResults =
+            new TreeMap<>(Comparator.comparing(Team::rankingPoints));
     private static final int MAX_SCORING_EVENTS = 8;
 
     // If this is changed, it must be between 0 and 60 (as the minimal ranking is around 61)
@@ -24,13 +25,13 @@ abstract class Match {
         // We only wish to add team to the Match if both Match spots have not already been filled up
 
         if (teamResults.keySet().size() < 2) {
-            teamResults.putIfAbsent(team, new LinkedList<>());
+            teamResults.putIfAbsent(team, new ArrayList<>());
         } else {
             System.out.println("Match already occupied by two nations, cannot add " + team);
         }
     }
 
-    Team playMatch() {
+    void playMatch() {
 
         // ONE OF THE SIX BIG METHODS
         // SUBJECT TO CHANGE DEPENDING ON CHOICE OF ALGORITHM
@@ -41,11 +42,12 @@ abstract class Match {
         }
 
         // Here, we find both teams and determine which one has a better world ranking
-        NavigableSet<Team> teams = new TreeSet<>(Comparator.comparing(Team::rankingPoints));
-        teams.addAll(teamResults.keySet());
+        Team betterTeam = teamResults.lastKey(); Team worseTeam = teamResults.firstKey();
 
-        Team betterTeam = teams.last(); Team worseTeam = teams.first();
-        System.out.printf("Welcome to %s, %s vs %s!!%n", this, betterTeam, worseTeam);
+        // Deciding on kits
+        String betterTeamColoured = determineKits().get(0);
+        String worseTeamColoured = determineKits().get(1);
+        System.out.printf("Welcome to %s, %s vs %s!!%n", this, betterTeamColoured, worseTeamColoured);
         double betterTeamRanking = betterTeam.rankingPoints(); double worseTeamRanking = worseTeam.rankingPoints();
 
         // Next, we randomize a number of ScoringEvents for each team based on their rankings
@@ -54,6 +56,7 @@ abstract class Match {
         int worseTeamNumScores = numScoringEvents(worseTeamRanking, betterTeamRanking);
 
         // Now simulate the events to work out what points to give out
+        // Note that newScoringEvent updates the teamResults map
         for (int i = 0; i < betterTeamNumScores; i ++) {
             newScoringEvent(betterTeam, worseTeam);
         }
@@ -68,15 +71,20 @@ abstract class Match {
 
         // Finally, work out which team won (if any). If there is a winner, return that
         // team, otherwise return null for a draw
+        Team winner;
         boolean isADraw = betterTeamScore == worseTeamScore;
         if (isADraw) {
-            return null;
+            winner = null;
+        } else {
+            winner = (betterTeamScore > worseTeamScore) ? betterTeam : worseTeam;
         }
-        return (betterTeamScore > worseTeamScore) ? betterTeam : worseTeam;
+        evaluateMatch(winner);
 
-        // IMPORTANT TO NOTE: both GroupMatch and KnockoutMatch override this method, by calling it
-        // first and then determining what happens next
+        // IMPORTANT TO NOTE: both GroupMatch and KnockoutMatch will now call evaluateMatch and
+        // use their different implementations
     }
+
+    abstract void evaluateMatch(Team winner);
 
     private void newScoringEvent(Team currentTeam, Team otherTeam) {
 
@@ -140,6 +148,25 @@ abstract class Match {
         return bernoulli.nextBernoulli() == 1 ? ScoringEvent.CONVERSION : null;
     }
 
+    NavigableMap<Team, List<ScoringEvent>> getTeamResults() {
+        // Important to make a deep copy here
+        NavigableMap<Team, List<ScoringEvent>> deepCopyMap =
+                new TreeMap<>(Comparator.comparing(Team::rankingPoints));
+        for (Team team : teamResults.keySet()) {
+            List<ScoringEvent> scoringEventsCopy = List.copyOf(teamResults.get(team));
+            deepCopyMap.put(team, scoringEventsCopy);
+        }
+        return deepCopyMap;
+    }
+
+    List<String> determineKits() {
+        Team team1 = teamResults.lastKey(); Team team2 = teamResults.firstKey();
+        String team1Coloured = team1.homeKitString(); String team2Coloured = team2.homeKitString();
+        if (team1.homeKit() == team2.homeKit()) {
+            team2Coloured = team2.alternateKitString();
+        }
+        return List.of(team1Coloured, team2Coloured);
+    }
 
     @Override
     public String toString() {

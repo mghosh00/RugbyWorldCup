@@ -10,5 +10,9 @@ public class Main {
 
         Map<String, Team> nations = Team.getTeams();
         System.out.println(nations);
+        for (Team nation : nations.values()) {
+            System.out.println("HOME: " + nation.homeKitString());
+            System.out.println("ALTERNATE: " + nation.alternateKitString());
+        }
     }
 }

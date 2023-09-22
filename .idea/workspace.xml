@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/data/GroupData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/data/TournamentProgressions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Outcome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Round.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/util/BernoulliDistribution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/util/BinomialDistribution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/util/Reader.java" afterDir="false" />
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="First few classes created">
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/team/Colour.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/Reader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +47,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.TestMain">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="mvg.solo.tournament" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mvg.solo.module.Main" />
       <module name="RugbyWorldCup" />
@@ -82,8 +81,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestMain" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestMain" />
       </list>
     </recent_temporary>
   </component>
@@ -96,6 +95,14 @@
       <option name="presentableId" value="Default" />
       <updated>1695288223060</updated>
     </task>
+    <task id="LOCAL-00001" summary="First few classes created">
+      <created>1695379533735</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695379533735</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -108,5 +115,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First few classes created" />
+    <option name="LAST_COMMIT_MESSAGE" value="First few classes created" />
   </component>
 </project>

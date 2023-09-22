@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public record Team(String countryName, double rankingPoints) implements Reader {
+public record Team(String countryName, double rankingPoints,
+                   Colour homeKit, Colour alternateKit) implements Reader {
 
     public static Map<String, Team> getTeams() {
         // We return a map here, which will be useful for instantiating the groups. This also creates
@@ -35,7 +36,17 @@ public record Team(String countryName, double rankingPoints) implements Reader {
         String[] words = countryName.split(" ");
         for (String word : words) {
             countryCamelCase.append(word.charAt(0)).append(word.substring(1).toLowerCase());
+            countryCamelCase.append(" ");
         }
+        countryCamelCase.deleteCharAt(countryCamelCase.length() - 1);
         return countryCamelCase.toString();
+    }
+
+    public String homeKitString() {
+        return homeKit + toString() + Colour.RESET;
+    }
+
+    public String alternateKitString() {
+        return alternateKit + toString() + Colour.RESET;
     }
 }
