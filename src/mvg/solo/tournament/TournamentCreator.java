@@ -3,6 +3,7 @@ package mvg.solo.tournament;
 import mvg.solo.data.GroupData;
 import mvg.solo.data.TournamentProgressions;
 import mvg.solo.team.Team;
+import mvg.solo.util.BackgroundColour;
 import mvg.solo.util.Reader;
 
 import java.util.*;
@@ -29,8 +30,10 @@ public class TournamentCreator implements Reader {
 
         // Instantiate all groups here
         Map<Character, Group> groups = new HashMap<>();
-        List<Character> chars = List.of('A', 'B', 'C', 'D');
-        chars.forEach(c -> groups.put(c, new Group(c)));
+        Map<Character, BackgroundColour> chars = Map.of('A', BackgroundColour.PURPLE,
+                'B', BackgroundColour.GREEN, 'C', BackgroundColour.RED,
+                'D', BackgroundColour.BLUE);
+        chars.forEach((k, v) -> groups.put(k, new Group(k, v)));
 
         // First retrieve the map of all Teams from the Team record
         Map<String, Team> allTeams = Team.getTeams();

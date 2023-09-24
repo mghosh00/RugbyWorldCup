@@ -1,6 +1,6 @@
-package mvg.solo.team;
+package mvg.solo.util;
 
-public enum Colour {
+public enum BackgroundColour {
     RESET, BLACK, RED, GREEN, YELLOW, BLUE, PURPLE, CYAN, WHITE;
 
 
@@ -11,6 +11,6 @@ public enum Colour {
         if (this == RESET) {
             return escapeSequence + "0" + finalCharacter;
         }
-        return escapeSequence + (ordinal() + 29) + finalCharacter;
+        return escapeSequence + (ordinal() + 39) + finalCharacter;
     }
 }

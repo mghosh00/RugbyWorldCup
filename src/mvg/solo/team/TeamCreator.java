@@ -1,6 +1,7 @@
 package mvg.solo.team;
 
 import mvg.solo.data.WorldRankings;
+import mvg.solo.util.Colour;
 import mvg.solo.util.Reader;
 
 import java.util.HashSet;

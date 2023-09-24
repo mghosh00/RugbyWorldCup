@@ -1,27 +1,29 @@
 package mvg.solo.tournament;
 
 import mvg.solo.team.Team;
+import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
 public class Group {
 
     private final char letter;
-    private final NavigableMap<Team, TableEntry> table = new TreeMap<>(
-            Comparator.comparing(Team::rankingPoints));
+    private final BackgroundColour colour;
+    private final NavigableSet<TableEntry> table = new TreeSet<>(Comparator.reverseOrder());
     private final NavigableMap<Integer, GroupMatch> matches = new TreeMap<>();
 
-    public Group(char letter) {
+    public Group(char letter, BackgroundColour colour) {
         this.letter = letter;
+        this.colour = colour;
     }
 
     void addTeam(Team team) {
 
-        // Here we wish to add a new Team to the table map, instantiating a new TableEntry for the team
+        // Here we wish to add a new Team to the table set, instantiating a new TableEntry for the team
         // at the same time
 
         TableEntry tableEntry = new TableEntry(team);
-        table.putIfAbsent(team, tableEntry);
+        table.add(tableEntry);
     }
 
     static NavigableMap<Character, Group> getGroups() {
@@ -44,7 +46,10 @@ public class Group {
     void updateTable(Team team, Outcome outcome, int pointsDifference, int bonusPoints,
                      Team otherTeam) {
         // Here we simply pass the work on to the TableEntry for the inputted Team
-        table.get(team).updateEntry(outcome, pointsDifference, bonusPoints, otherTeam);
+        // (and create a Map in the process to do this)
+        Map<Team, TableEntry> tableMap = new HashMap<>();
+        table.forEach(tableEntry -> tableMap.putIfAbsent(tableEntry.team, tableEntry));
+        tableMap.get(team).updateEntry(outcome, pointsDifference, bonusPoints, otherTeam);
     }
 
     void playMatches() {
@@ -63,13 +68,13 @@ public class Group {
         // The goal here is to create 10 round-robin matches
         int currentMatchId = matches.firstKey();
 
-        for (Team firstTeam : table.navigableKeySet()) {
+        for (TableEntry firstEntry : table) {
 
-            // This ensures that secondTeam is truly not equal to firstTeam
-            for (Team secondTeam : table.tailMap(firstTeam, false).keySet()) {
+            // This ensures that secondEntry is truly not equal to firstEntry
+            for (TableEntry secondEntry : table.tailSet(firstEntry, false)) {
                 Match currentMatch = matches.get(currentMatchId);
-                currentMatch.addTeam(firstTeam);
-                currentMatch.addTeam(secondTeam);
+                currentMatch.addTeam(firstEntry.team);
+                currentMatch.addTeam(secondEntry.team);
 
                 // If we have reached the final matchId, then we exit the method
                 if (currentMatchId == matches.lastKey()) {
@@ -84,14 +89,14 @@ public class Group {
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(separatorLine('='));
-        s.append(String.format("Group %c%n", letter));
+        s.append(String.format("%sGroup %c%s%n", colour, letter, BackgroundColour.RESET));
         s.append(separatorLine('-'));
 
         // Here we will present the group table
         s.append(String.format("%-15s%2c%2c%2c%2c%5s%3s%5s%n",
                 "Country", 'P', 'W', 'D', 'L', "PD", "BP", "PTS"));
         s.append(separatorLine('-'));
-        for (TableEntry tableEntry : table.values()) {
+        for (TableEntry tableEntry : table) {
             s.append(tableEntry.toString());
         }
         s.append(separatorLine('='));
@@ -102,7 +107,7 @@ public class Group {
         return String.valueOf(c).repeat(36) + "\n";
     }
 
-    private static class TableEntry implements Comparator<TableEntry> {
+    private static class TableEntry implements Comparable<TableEntry> {
 
         private final Team team;
         private int matchesPlayed;
@@ -117,7 +122,8 @@ public class Group {
 
             // This initialises the TableEntry with no wins, no draws and no losses
             this.outcomes.putAll(Map.of(Outcome.WIN, 0, Outcome.DRAW, 0, Outcome.LOSS, 0));
-            this.pointsDifference = 0; this.bonusPoints = 0;
+            this.pointsDifference = 0;
+            this.bonusPoints = 0;
         }
 
         private int getTotalPoints() {
@@ -136,10 +142,13 @@ public class Group {
             // This method can only be called by Group.updateTable as it is private within Group.
 
             // Here we update the outcomes column by adding one new outcome to the correct key
-            outcomes.compute(outcome, (o, oldValue) -> {assert oldValue != null; return oldValue + 1;});
+            outcomes.compute(outcome, (o, oldValue) -> {
+                assert oldValue != null;
+                return oldValue + 1;
+            });
 
             // Then update all other columns in the table
-            this.matchesPlayed ++;
+            this.matchesPlayed++;
             this.pointsDifference += pointsDifference;
             this.bonusPoints += bonusPoints;
 
@@ -159,38 +168,45 @@ public class Group {
                     pointsDifference, bonusPoints, getTotalPoints());
         }
 
-        @Override
-        public int compare(TableEntry o1, TableEntry o2) {
+        private Set<Team> getBeatenTeams() {
+            return Set.copyOf(beatenTeams);
+        }
 
+        @Override
+        public int compareTo(TableEntry o) {
             // Here we implement the rules for ordering the Group as determined in the following
             // link: https://www.rugbyworldcup.com/news/35290. Note that we are skipping a few
             // comparisons as we are highly unlikely to get to this stage and this will reduce
             // the amount of information we need to keep track of
 
             // 1. The Team with the most points is higher
-            if (o1.getTotalPoints() != o2.getTotalPoints()) {
-                return o1.getTotalPoints() - o2.getTotalPoints();
+            if (getTotalPoints() != o.getTotalPoints()) {
+                return getTotalPoints() - o.getTotalPoints();
             }
 
             // 2. The winner of the Match between these two Teams is higher
-            if (o1.getBeatenTeams().contains(o2.team)) {
+            if (getBeatenTeams().contains(o.team)) {
                 return 1;
-            } else if (o2.getBeatenTeams().contains(o1.team)) {
+            } else if (o.getBeatenTeams().contains(team)) {
                 return -1;
             }
 
             // 3. The Team with the better pointsDifference is higher
-            if (o1.pointsDifference != o2.pointsDifference) {
-                return o1.pointsDifference - o2.pointsDifference;
+            if (pointsDifference != o.pointsDifference) {
+                return pointsDifference - o.pointsDifference;
             }
 
             // 4. The worldRankings will determine the higher Team as of 04/09/23
-            return (int) (o1.team.rankingPoints() - o2.team.rankingPoints()) * 100;
+            // Note that this will return a unique value unless two teams have exactly
+            // the same rankingPoints(), in which case we will compare the names (to sort
+            // a bug)
+            if (team.rankingPoints() != o.team.rankingPoints()) {
+                return (int) ((team.rankingPoints() - o.team.rankingPoints()) * 100);
+            }
 
-        }
+            // Note that we should never reach this line, but is here just in case
+            return team.countryName().compareTo(o.team.countryName());
 
-        private Set<Team> getBeatenTeams() {
-            return Set.copyOf(beatenTeams);
         }
     }
 }

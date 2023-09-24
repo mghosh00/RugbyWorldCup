@@ -1,5 +1,6 @@
 package mvg.solo.team;
 
+import mvg.solo.util.Colour;
 import mvg.solo.util.Reader;
 
 import java.util.HashMap;

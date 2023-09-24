@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Added KnockoutMatch and TournamentCreator, completed the Group class (except one method) and implemented a Comparator in TableEntry">
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team">
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/util/BackgroundColour.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Colour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/Colour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,12 +19,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="tableSet" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -36,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
@@ -83,6 +92,8 @@
       <list>
         <item itemvalue="Application.mvg.solo.tournament.TestMain" />
         <item itemvalue="Application.mvg.solo.module.Main" />
+        <item itemvalue="Application.mvg.solo.tournament.TestMain" />
+        <item itemvalue="Application.mvg.solo.module.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -116,7 +127,21 @@
       <option name="project" value="LOCAL" />
       <updated>1695552222428</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Minor changes">
+      <created>1695555995269</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695555995269</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team">
+      <created>1695556658190</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695556658190</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,9 +156,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First few classes created" />
     <MESSAGE value="Added GroupMatches and Colours with some edits" />
     <MESSAGE value="Added KnockoutMatch and TournamentCreator, completed the Group class (except one method) and implemented a Comparator in TableEntry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added KnockoutMatch and TournamentCreator, completed the Group class (except one method) and implemented a Comparator in TableEntry" />
+    <MESSAGE value="Minor changes" />
+    <MESSAGE value="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team" />
   </component>
 </project>
