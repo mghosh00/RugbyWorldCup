@@ -9,6 +9,7 @@ import java.util.*;
 abstract class Match {
 
     private final int id;
+    private final Round round;
     private final NavigableMap<Team, List<ScoringEvent>> teamResults =
             new TreeMap<>(Comparator.comparing(Team::rankingPoints));
     private static final int MAX_SCORING_EVENTS = 8;
@@ -18,6 +19,7 @@ abstract class Match {
 
     Match(int id) {
         this.id = id;
+        this.round = Round.matchIdToRound(id);
     }
 
     void addTeam(Team team) {
@@ -39,6 +41,12 @@ abstract class Match {
         // Firstly, we ensure that we have exactly two teams, else throw an error
         if (teamResults.size() != 2) {
             throw new RuntimeException(this + " must contain exactly two teams when playMatch() is called");
+        }
+
+        // Also we need to clear the Lists of ScoringEvents for each Team, so they are reset in case
+        // the match needs a re-run
+        for (List<ScoringEvent> scoringEvents : teamResults.values()) {
+            scoringEvents.clear();
         }
 
         // Here, we find both teams and determine which one has a better world ranking
@@ -148,6 +156,15 @@ abstract class Match {
         return bernoulli.nextBernoulli() == 1 ? ScoringEvent.CONVERSION : null;
     }
 
+    List<String> determineKits() {
+        Team team1 = teamResults.lastKey(); Team team2 = teamResults.firstKey();
+        String team1Coloured = team1.homeKitString(); String team2Coloured = team2.homeKitString();
+        if (team1.homeKit() == team2.homeKit()) {
+            team2Coloured = team2.alternateKitString();
+        }
+        return List.of(team1Coloured, team2Coloured);
+    }
+
     NavigableMap<Team, List<ScoringEvent>> getTeamResults() {
         // Important to make a deep copy here
         NavigableMap<Team, List<ScoringEvent>> deepCopyMap =
@@ -159,13 +176,22 @@ abstract class Match {
         return deepCopyMap;
     }
 
-    List<String> determineKits() {
-        Team team1 = teamResults.lastKey(); Team team2 = teamResults.firstKey();
-        String team1Coloured = team1.homeKitString(); String team2Coloured = team2.homeKitString();
-        if (team1.homeKit() == team2.homeKit()) {
-            team2Coloured = team2.alternateKitString();
-        }
-        return List.of(team1Coloured, team2Coloured);
+    public int getId() {
+        return id;
+    }
+
+    public Round getRound() {
+        return round;
+    }
+
+    String formattedResults() {
+        Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
+        var team1Scores = teamResults.get(team1); var team2Scores = teamResults.get(team2);
+        String team1Coloured = determineKits().get(0); String team2Coloured = determineKits().get(1);
+        String firstLine = this + " Results:::\n";
+        String secondLine = String.format("%15s%2d - %2d%-15s%n", team1Coloured,
+                ScoringEvent.totalScore(team1Scores), ScoringEvent.totalScore(team2Scores), team2Coloured);
+        return firstLine + secondLine;
     }
 
     @Override

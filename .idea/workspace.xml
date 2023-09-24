@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="First few classes created">
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/team/Colour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Added GroupMatches and Colours with some edits">
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Round.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695379533735</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added GroupMatches and Colours with some edits">
+      <created>1695401213748</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695401213748</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First few classes created" />
-    <option name="LAST_COMMIT_MESSAGE" value="First few classes created" />
+    <MESSAGE value="Added GroupMatches and Colours with some edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GroupMatches and Colours with some edits" />
   </component>
 </project>

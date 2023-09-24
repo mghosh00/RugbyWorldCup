@@ -19,6 +19,7 @@ public class GroupMatch extends Match {
     void evaluateMatch(Team winner) {
 
         // ONE OF THE SIX BIG METHODS
+        // Recall that the winner is coming from playMatch() in the Match class
 
         // This is just to keep track of individual points
         var teamResults = getTeamResults();
@@ -43,17 +44,20 @@ public class GroupMatch extends Match {
                 {assert oldPoints != null; return oldPoints + 1;});
             }
 
-            // Now we can update the group table for both teams
-            group.updateTable(winner, Outcome.WIN, pointsDifference, bonusPoints.get(winner));
-            group.updateTable(loser, Outcome.LOSS, -pointsDifference, bonusPoints.get(loser));
+            // Now we can update the group table for both teams. Note that the last entry in the method
+            // is so that who has beaten who can be stored in the table
+            System.out.println(winner + " is the winner!!");
+            group.updateTable(winner, Outcome.WIN, pointsDifference, bonusPoints.get(winner), loser);
+            group.updateTable(loser, Outcome.LOSS, -pointsDifference, bonusPoints.get(loser), winner);
 
 
         } else {
+            System.out.println("The match was a draw!");
             // We have enough information for a draw to update the group table
-            for (Team team : teams) {
-                group.updateTable(team, Outcome.DRAW, 0, bonusPoints.get(team));
-            }
+            group.updateTable(team1, Outcome.DRAW, 0, bonusPoints.get(team1), team2);
+            group.updateTable(team2, Outcome.DRAW, 0, bonusPoints.get(team2), team1);
         }
+        System.out.println(formattedResults());
 
     }
 
@@ -66,14 +70,8 @@ public class GroupMatch extends Match {
         return 0;
     }
 
-    String formattedResults() {
-        var teamResults = getTeamResults();
-        Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
-        var team1Scores = teamResults.get(team1); var team2Scores = teamResults.get(team2);
-        String team1Coloured = determineKits().get(0); String team2Coloured = determineKits().get(1);
-        String firstLine = this + " Results:::\n";
-        String secondLine = String.format("%15s%2d - %2d%-15s%n", team1Coloured,
-                ScoringEvent.totalScore(team1Scores), ScoringEvent.totalScore(team2Scores), team2Coloured);
-        return firstLine + secondLine;
+    @Override
+    public String toString() {
+        return String.format("%s Match %d", group, getId() % 10);
     }
 }

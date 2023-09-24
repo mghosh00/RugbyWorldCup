@@ -12,4 +12,18 @@ enum Round {
     int getNumMatches() {
         return numMatches;
     }
+
+    static Round matchIdToRound(int id) {
+        if (id < 1) {
+            return null;
+        }
+        int maxId = 0;
+        for (Round round : Round.values()) {
+            maxId += round.numMatches;
+            if (id <= maxId) {
+                return round;
+            }
+        }
+        return null;
+    }
 }
