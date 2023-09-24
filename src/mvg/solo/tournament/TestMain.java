@@ -8,8 +8,9 @@ public class TestMain {
 
     public static void main(String[] args) {
 
-        var groups = Group.getGroups();
-        groups.values().forEach(System.out::println);
+        TournamentCreator t = new TournamentCreator();
+        System.out.println(t.instantiateKnockoutMatches());
+
 
     }
 }

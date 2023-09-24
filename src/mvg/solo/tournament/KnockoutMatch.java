@@ -2,13 +2,18 @@ package mvg.solo.tournament;
 
 import mvg.solo.team.Team;
 
-public class KnockoutMatch extends Match {
+import java.util.Map;
 
-    private final KnockoutMatch nextMatch;
+class KnockoutMatch extends Match {
 
-    KnockoutMatch(int id, KnockoutMatch nextMatch) {
-        super(id);
-        this.nextMatch = nextMatch;
+    private final int idOfNextMatch;
+    private static final int THIRD_PLACE_PLAY_OFF_ID = 46;
+
+    KnockoutMatch(int idOfCurrentMatch, int idOfNextMatch) {
+        // Note - if idOfNextMatch = -1, this means that there is no nextMatch (e.g. FINAL),
+        // so we will note this later
+        super(idOfCurrentMatch);
+        this.idOfNextMatch = idOfNextMatch;
     }
 
     @Override
@@ -28,6 +33,12 @@ public class KnockoutMatch extends Match {
             return;
         }
         System.out.println(winner + " is the winner!!");
+
+        // Here we get the nextMatch to progress to
+        TournamentCreator tournamentCreator = new TournamentCreator();
+        Map<Integer, KnockoutMatch> knockoutMatches = tournamentCreator.instantiateKnockoutMatches();
+        KnockoutMatch nextMatch = knockoutMatches.get(idOfNextMatch);
+
         // If the match is a QUARTER_FINAL, then we simply add the winner to the nextMatch
         if (getRound() == Round.QUARTER_FINAL) {
             System.out.println("They will now progress to " + nextMatch);
@@ -38,7 +49,20 @@ public class KnockoutMatch extends Match {
             Team loser = (winner == getTeamResults().firstKey())
                     ? getTeamResults().lastKey() : getTeamResults().firstKey();
             System.out.println("And the loser, " + loser + " will join the third place play off!!");
-
+            Match thirdPlacePlayOff = knockoutMatches.get(THIRD_PLACE_PLAY_OFF_ID);
+            thirdPlacePlayOff.addTeam(loser);
         }
+    }
+
+    @Override
+    public String toString() {
+        return switch (getRound()) {
+            case QUARTER_FINAL -> "Quarter Final " + (getId() - Round.GROUP.getNumMatches());
+            case SEMI_FINAL -> "Semi Final " + (getId() - Round.GROUP.getNumMatches() -
+                    Round.QUARTER_FINAL.getNumMatches());
+            case THIRD_PLACE_PLAY_OFF -> "Third Place Play-Off";
+            case FINAL -> "Final";
+            default -> "";
+        };
     }
 }

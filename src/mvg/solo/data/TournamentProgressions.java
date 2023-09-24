@@ -27,7 +27,9 @@ public class TournamentProgressions {
             43:46
             44:46
             45:48
-            46:48""";
+            46:48
+            47:-1
+            48:-1""";
 
     public static String getGroupProgressions() {
         return groupProgressions;

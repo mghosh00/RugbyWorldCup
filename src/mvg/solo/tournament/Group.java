@@ -5,12 +5,21 @@ import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
-public class Group {
+class Group {
 
     private final char letter;
     private final BackgroundColour colour;
-    private final NavigableSet<TableEntry> table = new TreeSet<>(Comparator.reverseOrder());
+    private NavigableSet<TableEntry> table = new TreeSet<>();
     private final NavigableMap<Integer, GroupMatch> matches = new TreeMap<>();
+
+    {
+        // This initializer block is used to set up all the group matches. We first instantiate
+        // the new GroupMatches and then add them to the matches TreeMap
+        for (int i = 0; i < Round.GROUP.getNumMatches() / 4; i ++) {
+            GroupMatch groupMatch = new GroupMatch(this);
+            matches.putIfAbsent(groupMatch.getId(), groupMatch);
+        }
+    }
 
     public Group(char letter, BackgroundColour colour) {
         this.letter = letter;
@@ -60,12 +69,22 @@ public class Group {
         for (int matchId : matches.keySet()) {
             matches.get(matchId).playMatch();
         }
+
+        // This is to re-sort the elements
+        List<TableEntry> tableEntries = new ArrayList<>(table);
+        Collections.sort(tableEntries);
+        table = new TreeSet<>(tableEntries);
+
+        // Reveal the results
+        System.out.println(this);
     }
 
     private void setUpMatches() {
         // ONE OF THE SIX BIG METHODS
 
         // The goal here is to create 10 round-robin matches
+
+        // Then find the lowest matchId
         int currentMatchId = matches.firstKey();
 
         for (TableEntry firstEntry : table) {
@@ -105,6 +124,18 @@ public class Group {
 
     private String separatorLine(char c) {
         return String.valueOf(c).repeat(36) + "\n";
+    }
+
+    public char getLetter() {
+        return letter;
+    }
+
+    public Team getWinner() {
+        return table.first().team;
+    }
+
+    public Team getRunnerUp() {
+        return Objects.requireNonNull(table.higher(table.first())).team;
     }
 
     private static class TableEntry implements Comparable<TableEntry> {
@@ -181,19 +212,19 @@ public class Group {
 
             // 1. The Team with the most points is higher
             if (getTotalPoints() != o.getTotalPoints()) {
-                return getTotalPoints() - o.getTotalPoints();
+                return o.getTotalPoints() - getTotalPoints();
             }
 
             // 2. The winner of the Match between these two Teams is higher
             if (getBeatenTeams().contains(o.team)) {
-                return 1;
-            } else if (o.getBeatenTeams().contains(team)) {
                 return -1;
+            } else if (o.getBeatenTeams().contains(team)) {
+                return 1;
             }
 
             // 3. The Team with the better pointsDifference is higher
             if (pointsDifference != o.pointsDifference) {
-                return pointsDifference - o.pointsDifference;
+                return o.pointsDifference - pointsDifference;
             }
 
             // 4. The worldRankings will determine the higher Team as of 04/09/23
@@ -201,11 +232,11 @@ public class Group {
             // the same rankingPoints(), in which case we will compare the names (to sort
             // a bug)
             if (team.rankingPoints() != o.team.rankingPoints()) {
-                return (int) ((team.rankingPoints() - o.team.rankingPoints()) * 100);
+                return (int) ((o.team.rankingPoints() - team.rankingPoints()) * 100);
             }
 
             // Note that we should never reach this line, but is here just in case
-            return team.countryName().compareTo(o.team.countryName());
+            return o.team.countryName().compareTo(team.countryName());
 
         }
     }

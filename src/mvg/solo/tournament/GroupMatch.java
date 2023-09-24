@@ -4,14 +4,14 @@ import mvg.solo.team.Team;
 
 import java.util.*;
 
-public class GroupMatch extends Match {
+class GroupMatch extends Match {
 
     private static final int TRY_THRESHOLD = 4;
     private static final int LOSER_SCORE_THRESHOLD = 7;
     private final Group group;
 
-    GroupMatch(int id, Group group) {
-        super(id);
+    GroupMatch(Group group) {
+        super();
         this.group = group;
     }
 
@@ -72,6 +72,8 @@ public class GroupMatch extends Match {
 
     @Override
     public String toString() {
-        return String.format("%s Match %d", group, getId() % 10);
+        int remainder = getId() % 10;
+        return String.format("Group %c Match %d", group.getLetter(),
+                remainder == 0 ? 10 : remainder);
     }
 }

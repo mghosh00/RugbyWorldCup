@@ -8,6 +8,7 @@ import java.util.*;
 
 abstract class Match {
 
+    private static int LAST_ID = 1;
     private final int id;
     private final Round round;
     private final NavigableMap<Team, List<ScoringEvent>> teamResults =
@@ -17,9 +18,14 @@ abstract class Match {
     // If this is changed, it must be between 0 and 60 (as the minimal ranking is around 61)
     private static final int RANKING_OFFSET = 50;
 
+    // Two separate constructors depending on whether the Match is a GroupMatch or a KnockoutMatch
+    Match() {
+        this(LAST_ID ++);
+    }
+
     Match(int id) {
         this.id = id;
-        this.round = Round.matchIdToRound(id);
+        this.round = Round.matchIdToRound(this.id);
     }
 
     void addTeam(Team team) {
@@ -107,7 +113,7 @@ abstract class Match {
         ScoringEvent scoringEvent = tryOrPenalty(signedDifference);
 
         // Now, update the scoringEvents list (print statement is temporary)
-        System.out.println(currentTeam + " scores a " + scoringEvent);
+        // System.out.println(currentTeam + " scores a " + scoringEvent);
         scoringEvents.add(scoringEvent);
 
         // Next, if it happens to be a TRY, we must randomise whether there is also a CONVERSION or not
@@ -116,7 +122,7 @@ abstract class Match {
             ScoringEvent conversion = conversionAttempt(currentTeam);
             if (conversion != null) {
                 // If they have scored a CONVERSION, update the scoringEvents list
-                System.out.println(currentTeam + " scores a " + scoringEvent);
+                // System.out.println(currentTeam + " scores a " + conversion);
                 scoringEvents.add(conversion);
             }
         }
@@ -157,7 +163,7 @@ abstract class Match {
     }
 
     List<String> determineKits() {
-        Team team1 = teamResults.lastKey(); Team team2 = teamResults.firstKey();
+        Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
         String team1Coloured = team1.homeKitString(); String team2Coloured = team2.homeKitString();
         if (team1.homeKit() == team2.homeKit()) {
             team2Coloured = team2.alternateKitString();
@@ -188,8 +194,8 @@ abstract class Match {
         Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
         var team1Scores = teamResults.get(team1); var team2Scores = teamResults.get(team2);
         String team1Coloured = determineKits().get(0); String team2Coloured = determineKits().get(1);
-        String firstLine = this + " Results:::\n";
-        String secondLine = String.format("%15s%2d - %2d%-15s%n", team1Coloured,
+        String firstLine = this + " Results:::\n\n";
+        String secondLine = String.format("%-25s%-2d - %2d%25s%n", team1Coloured,
                 ScoringEvent.totalScore(team1Scores), ScoringEvent.totalScore(team2Scores), team2Coloured);
         return firstLine + secondLine;
     }
@@ -197,6 +203,15 @@ abstract class Match {
     @Override
     public String toString() {
         return "Match " + id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // A Match is equal to another Match if and only if they share the same id
+        if (!(obj instanceof Match match)) {
+            return false;
+        }
+        return id == match.id;
     }
 
     enum ScoringEvent {

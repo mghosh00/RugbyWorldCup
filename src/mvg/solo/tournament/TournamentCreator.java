@@ -8,25 +8,18 @@ import mvg.solo.util.Reader;
 
 import java.util.*;
 
-public class TournamentCreator implements Reader {
-
-    Set<? extends Match> instantiateMatches(Round round) {
-        if (round == Round.GROUP) {
-
-            // Use the groupProgressions String to return a map of String (as explained in the Reader
-            // class) to List<String> containing only one element
-
-            Map<String, List<String>> groupMatchesMap =
-                    textToMap(TournamentProgressions.getGroupProgressions(), 2);
-        }
-        return null;
-    }
+class TournamentCreator implements Reader {
 
     Set<Group> instantiateGroups() {
 
         // This map has key equal to the Team name and value equal to their Group letter
         // Note that the List<String> has only one value
         Map<String, List<String>> groupsMap = textToMap(GroupData.getGroupData(), 2);
+
+        // If textToMap is null, propagate this failure
+        if (groupsMap == null) {
+            return null;
+        }
 
         // Instantiate all groups here
         Map<Character, Group> groups = new HashMap<>();
@@ -57,5 +50,72 @@ public class TournamentCreator implements Reader {
             }
         }
         return new HashSet<>(groups.values());
+    }
+
+    Map<Integer, KnockoutMatch> instantiateKnockoutMatches() {
+
+        // This is a map of matchId to a singleton List containing the matchId for the
+        // Match that the winner of the current matchId will progress to
+        Map<String, List<String>> knockoutProgressionsMap =
+                textToMap(TournamentProgressions.getKnockoutProgressions(), 2);
+
+        // If textToMap gives null, propagate this error
+        if (knockoutProgressionsMap == null) {
+            return null;
+        }
+
+        Map<Integer, KnockoutMatch> knockoutMatches = new HashMap<>();
+
+        // Now we will instantiate all the new KnockoutMatches with their follow-up
+        // KnockoutMatch. Note we wish to return null if the values contained within
+        // the map cannot be parsed to Integer
+
+        for (String sMatchId : knockoutProgressionsMap.keySet()) {
+
+            try {
+                int idOfCurrentMatch = Integer.parseInt(sMatchId);
+                int idOfNextMatch = Integer.parseInt(knockoutProgressionsMap.get(sMatchId).get(0));
+                KnockoutMatch knockoutMatch = new KnockoutMatch(idOfCurrentMatch, idOfNextMatch);
+                knockoutMatches.put(idOfCurrentMatch, knockoutMatch);
+            } catch (NumberFormatException e) {
+                System.out.println("Syntax error in knockoutProgressions at id " + sMatchId);
+                return null;
+            }
+        }
+
+        return knockoutMatches;
+    }
+
+    Map<String, Integer> getGroupProgressions() {
+
+        // This method reads the groupProgressions String and converts it into the correct format
+
+        // This map should be a map from groupAndPosition (e.g. A2 for Group A runner-up) to the
+        // matchId of the QUARTER_FINAL they progress to
+
+        Map<String, List<String>> groupProgressions =
+                textToMap(TournamentProgressions.getGroupProgressions(), 2);
+
+        Map<String, Integer> outputMap = new HashMap<>();
+
+        // We can afford to check vigorously here, so there is no need to do it later
+        for (String groupAndPosition : groupProgressions.keySet()) {
+            try {
+                char groupLetter = groupAndPosition.charAt(0);
+                assert List.of('A', 'B', 'C', 'D').contains(groupLetter);
+
+                int groupPosition = Integer.parseInt(String.valueOf(groupAndPosition.charAt(1)));
+                assert groupPosition == 1 || groupPosition == 2;
+
+                int quarterFinalId = Integer.parseInt(
+                        groupProgressions.get(groupAndPosition).get(0));
+                outputMap.putIfAbsent(groupAndPosition, quarterFinalId);
+
+            } catch (NumberFormatException | AssertionError e) {
+                System.out.println("Syntax error in groupProgressions at string " + groupAndPosition);
+                return null;
+            }
+        }
+        return outputMap;
     }
 }
