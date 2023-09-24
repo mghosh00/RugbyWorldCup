@@ -7,7 +7,8 @@ import java.util.*;
 public class Group {
 
     private final char letter;
-    private final NavigableMap<Team, TableEntry> table = new TreeMap<>(Comparator.comparing(Team::rankingPoints));
+    private final NavigableMap<Team, TableEntry> table = new TreeMap<>(
+            Comparator.comparing(Team::rankingPoints));
     private final NavigableMap<Integer, GroupMatch> matches = new TreeMap<>();
 
     public Group(char letter) {
@@ -23,9 +24,21 @@ public class Group {
         table.putIfAbsent(team, tableEntry);
     }
 
-    static Map<Character, Group> getGroups() {
-        // Come back to make this method later
-        return null;
+    static NavigableMap<Character, Group> getGroups() {
+        TournamentCreator tournamentCreator = new TournamentCreator();
+        Set<Group> groups = tournamentCreator.instantiateGroups();
+
+        // If the data was erroneous in any form, we throw an error here
+        if (groups == null) {
+            throw new RuntimeException("Initial data was erroneous in some form, please" +
+                    " review mvg.solo.data.GroupData");
+        }
+
+        NavigableMap<Character, Group> groupMap = new TreeMap<>();
+        for (Group group : groups) {
+            groupMap.put(group.letter, group);
+        }
+        return groupMap;
     }
 
     void updateTable(Team team, Outcome outcome, int pointsDifference, int bonusPoints,
@@ -65,6 +78,28 @@ public class Group {
                 currentMatchId ++;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(separatorLine('='));
+        s.append(String.format("Group %c%n", letter));
+        s.append(separatorLine('-'));
+
+        // Here we will present the group table
+        s.append(String.format("%-15s%2c%2c%2c%2c%5s%3s%5s%n",
+                "Country", 'P', 'W', 'D', 'L', "PD", "BP", "PTS"));
+        s.append(separatorLine('-'));
+        for (TableEntry tableEntry : table.values()) {
+            s.append(tableEntry.toString());
+        }
+        s.append(separatorLine('='));
+        return s.toString();
+    }
+
+    private String separatorLine(char c) {
+        return String.valueOf(c).repeat(36) + "\n";
     }
 
     private static class TableEntry implements Comparator<TableEntry> {
@@ -119,7 +154,7 @@ public class Group {
         public String toString() {
             // For reference, we give 15 characters for the name, 2 for matchesPlayed and all outcomes,
             // 5 for pointsDifference, 2 for bonusPoints and finally 5 for totalPoints
-            return String.format("%15s%2d%2d%2d%2d%5d%2d%5d", team, matchesPlayed,
+            return String.format("%-15s%2d%2d%2d%2d%5d%3d%5d%n", team, matchesPlayed,
                     outcomes.get(Outcome.WIN), outcomes.get(Outcome.DRAW), outcomes.get(Outcome.LOSS),
                     pointsDifference, bonusPoints, getTotalPoints());
         }
