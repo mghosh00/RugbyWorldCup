@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Created BackgroundColour and fixed tabl error">
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" afterDir="false" />
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Created Tournament and now the project partially works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/TournamentProgressions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/TournamentProgressions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695567192838</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created Tournament and now the project partially works">
+      <created>1695591048743</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695591048743</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +177,7 @@
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team" />
     <MESSAGE value="Created BackgroundColour and fixed tabl error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created BackgroundColour and fixed tabl error" />
+    <MESSAGE value="Created Tournament and now the project partially works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Tournament and now the project partially works" />
   </component>
 </project>

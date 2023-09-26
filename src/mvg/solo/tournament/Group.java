@@ -130,6 +130,10 @@ class Group {
         return letter;
     }
 
+    public BackgroundColour getColour() {
+        return colour;
+    }
+
     public Team getWinner() {
         return table.first().team;
     }

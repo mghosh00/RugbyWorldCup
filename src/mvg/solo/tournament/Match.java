@@ -31,7 +31,6 @@ abstract class Match {
     void addTeam(Team team) {
 
         // We only wish to add team to the Match if both Match spots have not already been filled up
-
         if (teamResults.keySet().size() < 2) {
             teamResults.putIfAbsent(team, new ArrayList<>());
         } else {

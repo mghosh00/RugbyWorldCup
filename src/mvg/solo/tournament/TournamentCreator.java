@@ -7,52 +7,80 @@ import mvg.solo.util.BackgroundColour;
 import mvg.solo.util.Reader;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 class TournamentCreator implements Reader {
 
+    private static final AtomicBoolean groupsInstantiated = new AtomicBoolean(false);
+    private static final AtomicBoolean knockoutMatchesInstantiated = new AtomicBoolean(false);
+
     Set<Group> instantiateGroups() {
 
-        // This map has key equal to the Team name and value equal to their Group letter
-        // Note that the List<String> has only one value
-        Map<String, List<String>> groupsMap = textToMap(GroupData.getGroupData(), 2);
+        if (groupsInstantiated.compareAndSet(false, true)) {
 
-        // If textToMap is null, propagate this failure
-        if (groupsMap == null) {
-            return null;
-        }
+            // This map has key equal to the Team name and value equal to their Group letter
+            // Note that the List<String> has only one value
+            Map<String, List<String>> groupsMap = textToMap(GroupData.getGroupData(), 2);
 
-        // Instantiate all groups here
-        Map<Character, Group> groups = new HashMap<>();
-        Map<Character, BackgroundColour> chars = Map.of('A', BackgroundColour.PURPLE,
-                'B', BackgroundColour.GREEN, 'C', BackgroundColour.RED,
-                'D', BackgroundColour.BLUE);
-        chars.forEach((k, v) -> groups.put(k, new Group(k, v)));
-
-        // First retrieve the map of all Teams from the Team record
-        Map<String, Team> allTeams = Team.getTeams();
-
-        // Next, add all Teams to their correct Group. Note we wish to return null if either the
-        // character is invalid or if the countryName is invalid. We will pass this error on to
-        // the Group class
-        for (String countryName : groupsMap.keySet()) {
-            try {
-                Team team = allTeams.get(countryName);
-                assert team != null;
-
-                char groupLetter = groupsMap.get(countryName).get(0).charAt(0);
-                Group group = groups.get(groupLetter);
-                assert group != null;
-
-                group.addTeam(team);
-            } catch (AssertionError e) {
-                System.out.println("Syntax error in groupData at country " + countryName);
+            // If textToMap is null, propagate this failure
+            if (groupsMap == null) {
                 return null;
             }
+
+            // Instantiate all groups here
+            Map<Character, Group> groups = new HashMap<>();
+            Map<Character, BackgroundColour> chars = Map.of('A', BackgroundColour.BLUE,
+                    'B', BackgroundColour.GREEN, 'C', BackgroundColour.RED,
+                    'D', BackgroundColour.PURPLE);
+            chars.forEach((k, v) -> groups.put(k, new Group(k, v)));
+
+            // First retrieve the map of all Teams from the Team record
+            Map<String, Team> allTeams = Team.getTeams();
+
+            // Next, add all Teams to their correct Group. Note we wish to return null if either the
+            // character is invalid or if the countryName is invalid. We will pass this error on to
+            // the Group class
+            for (String countryName : groupsMap.keySet()) {
+                try {
+                    Team team = allTeams.get(countryName);
+                    assert team != null;
+
+                    char groupLetter = groupsMap.get(countryName).get(0).charAt(0);
+                    Group group = groups.get(groupLetter);
+                    assert group != null;
+
+                    group.addTeam(team);
+                } catch (AssertionError e) {
+                    System.out.println("Syntax error in groupData at country " + countryName);
+                    return null;
+                }
+            }
+            return new HashSet<>(groups.values());
         }
-        return new HashSet<>(groups.values());
+        System.out.println("Groups already instantiated!!");
+        return null;
     }
 
     Map<Integer, KnockoutMatch> instantiateKnockoutMatches() {
+
+        if (knockoutMatchesInstantiated.compareAndSet(false, true)) {
+
+            Map<Integer, KnockoutMatch> outputMap = new HashMap<>();
+
+            // This uses the map in the method defined below
+            Map<Integer, Integer> knockoutProgressions = getKnockoutProgressions();
+
+            for (int id : knockoutProgressions.keySet()) {
+                KnockoutMatch match = new KnockoutMatch(id);
+                outputMap.putIfAbsent(id, match);
+            }
+            return outputMap;
+        }
+        System.out.println("Knockout matches already instantiated!!");
+        return null;
+    }
+
+    Map<Integer, Integer> getKnockoutProgressions() {
 
         // This is a map of matchId to a singleton List containing the matchId for the
         // Match that the winner of the current matchId will progress to
@@ -64,26 +92,23 @@ class TournamentCreator implements Reader {
             return null;
         }
 
-        Map<Integer, KnockoutMatch> knockoutMatches = new HashMap<>();
+        Map<Integer, Integer> knockoutProgressions = new HashMap<>();
 
-        // Now we will instantiate all the new KnockoutMatches with their follow-up
-        // KnockoutMatch. Note we wish to return null if the values contained within
-        // the map cannot be parsed to Integer
+        // Now we will create the map of knockoutProgressions, catching any numerical errors
 
         for (String sMatchId : knockoutProgressionsMap.keySet()) {
 
             try {
                 int idOfCurrentMatch = Integer.parseInt(sMatchId);
                 int idOfNextMatch = Integer.parseInt(knockoutProgressionsMap.get(sMatchId).get(0));
-                KnockoutMatch knockoutMatch = new KnockoutMatch(idOfCurrentMatch, idOfNextMatch);
-                knockoutMatches.put(idOfCurrentMatch, knockoutMatch);
+                knockoutProgressions.put(idOfCurrentMatch, idOfNextMatch);
             } catch (NumberFormatException e) {
                 System.out.println("Syntax error in knockoutProgressions at id " + sMatchId);
                 return null;
             }
         }
 
-        return knockoutMatches;
+        return knockoutProgressions;
     }
 
     Map<String, Integer> getGroupProgressions() {

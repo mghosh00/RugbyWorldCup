@@ -1,6 +1,7 @@
 package mvg.solo.tournament;
 
 import mvg.solo.team.Team;
+import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
@@ -73,7 +74,8 @@ class GroupMatch extends Match {
     @Override
     public String toString() {
         int remainder = getId() % 10;
-        return String.format("Group %c Match %d", group.getLetter(),
+        return String.format("%sGroup %c%s Match %d", group.getColour(), group.getLetter(),
+                BackgroundColour.RESET,
                 remainder == 0 ? 10 : remainder);
     }
 }
