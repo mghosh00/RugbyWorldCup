@@ -1,6 +1,6 @@
 package mvg.solo.data;
 
-public class WorldRankings {
+public final class WorldRankings {
 
     // The below shows the men's world ranking points as per https://www.world.rugby/tournaments/rankings/mru
     // on 04/09/23, the last update before the start of the world cup. Only competing teams in the world cup
@@ -27,8 +27,30 @@ public class WorldRankings {
             NAMIBIA:61.61:BLUE:WHITE
             CHILE:60.49:RED:WHITE""";
 
+    private static final String upToDateWorldRankings = """
+            IRELAND:93.79:GREEN:WHITE
+            FRANCE:90.59:BLUE:WHITE
+            SOUTH AFRICA:89.70:GREEN:CYAN
+            NEW ZEALAND:87.69:BLACK:WHITE
+            SCOTLAND:83.43:BLUE:WHITE
+            ENGLAND:83.24:WHITE:BLUE
+            WALES:83.17:RED:BLACK
+            FIJI:80.66:WHITE:RED
+            ARGENTINA:79.31:CYAN:BLUE
+            AUSTRALIA:76.50:YELLOW:WHITE
+            ITALY:75.93:BLUE:WHITE
+            SAMOA:74.47:BLUE:WHITE
+            JAPAN:73.27:RED:BLUE
+            GEORGIA:73.18:RED:WHITE
+            TONGA:70.29:RED:WHITE
+            PORTUGAL:69.75:RED:WHITE
+            URUGUAY:66.33:CYAN:YELLOW
+            ROMANIA:64.56:YELLOW:WHITE
+            NAMIBIA:61.61:BLUE:WHITE
+            CHILE:60.49:RED:WHITE""";
+
     public static String getWorldRankings() {
-        return worldRankings;
+        return upToDateWorldRankings;
     }
 
 }

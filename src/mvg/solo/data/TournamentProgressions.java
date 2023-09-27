@@ -1,6 +1,6 @@
 package mvg.solo.data;
 
-public class TournamentProgressions {
+public final class TournamentProgressions {
 
     // There are 40 group matches, which will have matchId = 1-40, and 8 knockout matches.
     // The quarter-finals have matchId = 41-44, the semi-finals have matchId = 45-46,
@@ -17,6 +17,16 @@ public class TournamentProgressions {
             C2:43
             D1:43
             D2:41""";
+
+    private static final String wackyGroupProgressions = """
+            A1:41
+            A2:41
+            B1:42
+            B2:42
+            C1:43
+            C2:43
+            D1:44
+            D2:44""";
 
     // This shows where the winners of each knockout match will progress to. For example, the winner of
     // quarter-final 1 (matchId = 41) progresses to semi-final 1 (matchId = 45). The third-place-play-off

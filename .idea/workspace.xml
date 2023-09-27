@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Created Tournament and now the project partially works">
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Tournament fully working, just need to put on some finishing touches">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/GroupData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/GroupData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/TournamentProgressions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/TournamentProgressions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/WorldRankings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/BernoulliDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/BernoulliDistribution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/BinomialDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/BinomialDistribution.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695591048743</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Tournament fully working, just need to put on some finishing touches">
+      <created>1695722651917</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695722651918</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +194,7 @@
     <MESSAGE value="Changed table to be a Set, so that we can order the elements by TableEntry and not by Team" />
     <MESSAGE value="Created BackgroundColour and fixed tabl error" />
     <MESSAGE value="Created Tournament and now the project partially works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Tournament and now the project partially works" />
+    <MESSAGE value="Tournament fully working, just need to put on some finishing touches" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tournament fully working, just need to put on some finishing touches" />
   </component>
 </project>

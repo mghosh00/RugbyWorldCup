@@ -4,14 +4,14 @@ import mvg.solo.team.Team;
 import mvg.solo.util.BackgroundColour;
 import mvg.solo.util.Colour;
 
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class KnockoutMatch extends Match {
+final class KnockoutMatch extends Match {
 
     private Match nextMatch;
     private final AtomicBoolean isNextMatchAdded = new AtomicBoolean(false);
     private Team loser = null;
+    private Team winner = null;
 
     KnockoutMatch(int id) {
         super(id);
@@ -22,6 +22,9 @@ class KnockoutMatch extends Match {
 
         // ONE OF THE SIX BIG METHODS
         // Recall that winner is coming from playMatch() in the Match class
+        if (this.winner == null) {
+            this.winner = winner;
+        }
         System.out.println(formattedResults());
 
         // Perhaps a strange decision, but if we get a DRAW, then the Match is re-run
@@ -82,5 +85,16 @@ class KnockoutMatch extends Match {
         if (isNextMatchAdded.compareAndSet(false, true)) {
             this.nextMatch = nextMatch;
         }
+    }
+
+    public Team getWinner() {
+        return winner;
+    }
+
+    @Override
+    public void resetMatch() {
+        super.resetMatch();
+        loser = null;
+        winner = null;
     }
 }

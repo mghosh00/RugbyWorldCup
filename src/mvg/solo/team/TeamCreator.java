@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-class TeamCreator implements Reader {
+final class TeamCreator implements Reader {
 
     Set<Team> instantiateTeams() {
 

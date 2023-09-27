@@ -5,10 +5,11 @@ import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
-class GroupMatch extends Match {
+final class GroupMatch extends Match {
 
     private static final int TRY_THRESHOLD = 4;
     private static final int LOSER_SCORE_THRESHOLD = 7;
+    private static final int MATCHES_PER_GROUP = 10;
     private final Group group;
 
     GroupMatch(Group group) {
@@ -73,9 +74,9 @@ class GroupMatch extends Match {
 
     @Override
     public String toString() {
-        int remainder = getId() % 10;
+        int remainder = getId() % MATCHES_PER_GROUP;
         return String.format("%sGroup %c%s Match %d", group.getColour(), group.getLetter(),
                 BackgroundColour.RESET,
-                remainder == 0 ? 10 : remainder);
+                remainder == 0 ? MATCHES_PER_GROUP : remainder);
     }
 }

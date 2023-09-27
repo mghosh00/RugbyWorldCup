@@ -5,17 +5,19 @@ import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
-class Group {
+final class Group {
 
     private final char letter;
     private final BackgroundColour colour;
     private NavigableSet<TableEntry> table = new TreeSet<>();
     private final NavigableMap<Integer, GroupMatch> matches = new TreeMap<>();
+    private final static int NUM_TEAMS_IN_GROUP = 5;
+    private final static int NUM_GROUPS = 4;
 
     {
         // This initializer block is used to set up all the group matches. We first instantiate
         // the new GroupMatches and then add them to the matches TreeMap
-        for (int i = 0; i < Round.GROUP.getNumMatches() / 4; i ++) {
+        for (int i = 0; i < Round.GROUP.getNumMatches() / NUM_GROUPS; i ++) {
             GroupMatch groupMatch = new GroupMatch(this);
             matches.putIfAbsent(groupMatch.getId(), groupMatch);
         }
@@ -26,13 +28,19 @@ class Group {
         this.colour = colour;
     }
 
-    void addTeam(Team team) {
+    void addTeam(Team team) throws RuntimeException {
 
         // Here we wish to add a new Team to the table set, instantiating a new TableEntry for the team
-        // at the same time
+        // at the same time, only if the group is not full
 
-        TableEntry tableEntry = new TableEntry(team);
-        table.add(tableEntry);
+        if (table.size() < NUM_TEAMS_IN_GROUP) {
+            TableEntry tableEntry = new TableEntry(team);
+            table.add(tableEntry);
+        } else {
+            throw new RuntimeException("Failed to add " + team + " - must have exactly " +
+                    NUM_TEAMS_IN_GROUP + " Teams in " + "Group " + letter +
+                    ". Please review mvg.solo.data.GroupData");
+        }
     }
 
     static NavigableMap<Character, Group> getGroups() {
@@ -62,8 +70,6 @@ class Group {
     }
 
     void playMatches() {
-        // First we need to set up the different Matches (round-robin for all 5 Teams)
-        setUpMatches();
 
         // Here we simply play each Match in the Group
         for (int matchId : matches.keySet()) {
@@ -79,7 +85,7 @@ class Group {
         System.out.println(this);
     }
 
-    private void setUpMatches() {
+    void setUpMatches() {
         // ONE OF THE SIX BIG METHODS
 
         // The goal here is to create 10 round-robin matches
@@ -126,20 +132,28 @@ class Group {
         return String.valueOf(c).repeat(36) + "\n";
     }
 
-    public char getLetter() {
+    char getLetter() {
         return letter;
     }
 
-    public BackgroundColour getColour() {
+    BackgroundColour getColour() {
         return colour;
     }
 
-    public Team getWinner() {
+    Team getWinner() {
         return table.first().team;
     }
 
-    public Team getRunnerUp() {
+    Team getRunnerUp() {
         return Objects.requireNonNull(table.higher(table.first())).team;
+    }
+
+    void resetTable() {
+
+        // Here we must reset each individual TableEntry in the table
+        for (TableEntry tableEntry : table) {
+            tableEntry.resetEntry();
+        }
     }
 
     private static class TableEntry implements Comparable<TableEntry> {
@@ -242,6 +256,14 @@ class Group {
             // Note that we should never reach this line, but is here just in case
             return o.team.countryName().compareTo(team.countryName());
 
+        }
+
+        private void resetEntry() {
+            matchesPlayed = 0;
+            outcomes.replaceAll(((outcome, i) -> 0));
+            pointsDifference = 0;
+            bonusPoints = 0;
+            beatenTeams.clear();
         }
     }
 }

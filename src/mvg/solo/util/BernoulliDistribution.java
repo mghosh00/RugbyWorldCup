@@ -1,6 +1,6 @@
 package mvg.solo.util;
 
-public class BernoulliDistribution {
+public final class BernoulliDistribution {
 
     private final double successProbability;
 

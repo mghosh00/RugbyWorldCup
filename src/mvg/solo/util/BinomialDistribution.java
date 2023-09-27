@@ -1,6 +1,6 @@
 package mvg.solo.util;
 
-public class BinomialDistribution {
+public final class BinomialDistribution {
 
     private final int numTrials;
     private final double successProbability;

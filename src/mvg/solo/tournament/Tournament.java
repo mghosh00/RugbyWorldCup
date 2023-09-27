@@ -5,7 +5,7 @@ import mvg.solo.util.BackgroundColour;
 
 import java.util.*;
 
-public class Tournament {
+public final class Tournament {
 
     // The main method will only be able to see this class
     private final TournamentCreator tournamentCreator = new TournamentCreator();
@@ -19,8 +19,11 @@ public class Tournament {
         // groups:
         groups.putAll(Group.getGroups());
 
+        // and we need to initialise all the group matches
+        groups.values().forEach(Group::setUpMatches);
+
         // knockoutProgressions:
-        knockoutProgressions.putAll(tournamentCreator.getKnockoutProgressions());
+        knockoutProgressions.putAll(Objects.requireNonNull(tournamentCreator.getKnockoutProgressions()));
 
         // knockoutMatches:
 
@@ -28,6 +31,7 @@ public class Tournament {
         Map<Integer, KnockoutMatch> knockoutMatchMap = tournamentCreator.instantiateKnockoutMatches();
 
         // Next, use the ids to set the next Match for each knockoutMatch
+        assert knockoutMatchMap != null;
         for (int matchId : knockoutMatchMap.keySet()) {
             KnockoutMatch match = knockoutMatchMap.get(matchId);
             int idOfNextMatch = knockoutProgressions.get(match.getId());
@@ -46,14 +50,15 @@ public class Tournament {
                 put(i, knockoutMatch));
 
         // groupProgressions:
-        groupProgressions.putAll(tournamentCreator.getGroupProgressions());
+        groupProgressions.putAll(Objects.requireNonNull(tournamentCreator.getGroupProgressions()));
     }
 
-    public void beginTournament() {
+    public Team beginTournament() {
 
         // ONE OF THE SIX BIG METHODS
         // Basic idea - run each Group first, and then work out the best Teams. Then send them to the
         // correct KnockoutMatch and run each of these to determine the winner
+        Team winner = null;
 
         // GroupMatches
         for (char c : groups.navigableKeySet()) {
@@ -88,13 +93,40 @@ public class Tournament {
                             .firstEntry().getValue();
                     thirdPlacePlayOff.addTeam(loser);
                 }
+                System.out.println();
+
+                if (round == Round.FINAL) {
+                    winner = match.getWinner();
+                }
             }
         }
+
+        // Here, we reset the tournament in case it is run multiple times
+        resetTournament();
+        return winner;
     }
 
     private void progressToQuarters(Group group, Team team, int position) {
         int nextMatchId = groupProgressions.get(String.valueOf(group.getLetter()) + position);
         Match nextMatch = knockoutRounds.get(Round.QUARTER_FINAL).get(nextMatchId);
         nextMatch.addTeam(team);
+    }
+
+    private void resetTournament() {
+
+        // First we reset all the Groups so that all TableEntries have zeroes in all categories
+        for (Group group : groups.values()) {
+            group.resetTable();
+        }
+
+        // Next, we need to remove all Teams from all KnockoutMatches as these will need to
+        // be empty when starting the new Tournament
+        for (Round round : knockoutRounds.keySet()) {
+            for (KnockoutMatch knockoutMatch : knockoutRounds.get(round).values()) {
+                knockoutMatch.resetMatch();
+            }
+        }
+
+        // This is all we need to reset to restart the tournament
     }
 }

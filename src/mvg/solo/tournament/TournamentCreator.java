@@ -9,7 +9,7 @@ import mvg.solo.util.Reader;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class TournamentCreator implements Reader {
+final class TournamentCreator implements Reader {
 
     private static final AtomicBoolean groupsInstantiated = new AtomicBoolean(false);
     private static final AtomicBoolean knockoutMatchesInstantiated = new AtomicBoolean(false);
@@ -49,6 +49,8 @@ class TournamentCreator implements Reader {
                     Group group = groups.get(groupLetter);
                     assert group != null;
 
+                    // This addTeam method has in-built protection against adding too many
+                    // Teams to a Group
                     group.addTeam(team);
                 } catch (AssertionError e) {
                     System.out.println("Syntax error in groupData at country " + countryName);
@@ -70,6 +72,7 @@ class TournamentCreator implements Reader {
             // This uses the map in the method defined below
             Map<Integer, Integer> knockoutProgressions = getKnockoutProgressions();
 
+            assert knockoutProgressions != null;
             for (int id : knockoutProgressions.keySet()) {
                 KnockoutMatch match = new KnockoutMatch(id);
                 outputMap.putIfAbsent(id, match);

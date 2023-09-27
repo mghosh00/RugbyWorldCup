@@ -6,7 +6,7 @@ import mvg.solo.util.BinomialDistribution;
 
 import java.util.*;
 
-abstract class Match {
+sealed abstract class Match permits KnockoutMatch, GroupMatch {
 
     private static int LAST_ID = 1;
     private final int id;
@@ -211,6 +211,10 @@ abstract class Match {
             return false;
         }
         return id == match.id;
+    }
+
+    public void resetMatch() {
+        teamResults.clear();
     }
 
     enum ScoringEvent {
