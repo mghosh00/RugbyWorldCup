@@ -18,7 +18,7 @@ final class TournamentCreator implements TextReader {
 
             // This map has key equal to the Team name and value equal to their Group letter
             // Note that the List<String> has only one value
-            Map<String, List<String>> groupsMap = textToMap("groupData.txt", 2);
+            Map<String, List<String>> groupsMap = fileToMap("groupData.txt", 2);
 
             // If textToMap is null, propagate this failure
             if (groupsMap == null) {
@@ -86,7 +86,7 @@ final class TournamentCreator implements TextReader {
         // This is a map of matchId to a singleton List containing the matchId for the
         // Match that the winner of the current matchId will progress to
         Map<String, List<String>> knockoutProgressionsMap =
-                textToMap("knockoutProgressions.txt", 2);
+                fileToMap("knockoutProgressions.txt", 2);
 
         // If textToMap gives null, propagate this error
         if (knockoutProgressionsMap == null) {
@@ -120,7 +120,7 @@ final class TournamentCreator implements TextReader {
         // matchId of the QUARTER_FINAL they progress to
 
         Map<String, List<String>> groupProgressions =
-                textToMap("groupProgressions.txt", 2);
+                fileToMap("groupProgressions.txt", 2);
 
         Map<String, Integer> outputMap = new HashMap<>();
 

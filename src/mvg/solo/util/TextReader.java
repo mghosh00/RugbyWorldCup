@@ -1,6 +1,5 @@
 package mvg.solo.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
@@ -36,7 +35,7 @@ public interface TextReader {
         return null;
     }
 
-    default Map<String, List<String>> textToMap(String fileName, int numValues) {
+    default Map<String, List<String>> fileToMap(String fileName, int numValues) {
 
         Path path = Path.of("src/mvg/solo/data/" + fileName);
         try (Scanner scanner = new Scanner(path)) {
