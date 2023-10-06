@@ -229,11 +229,9 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         static int totalScore(List<ScoringEvent> scores) {
 
             // This method calculates the totalScore from a given List of ScoringMethods
-            int total = 0;
-            for (ScoringEvent scoringEvent : scores) {
-                total += scoringEvent.score;
-            }
-            return total;
+            return scores.stream()
+                    .map(scoringEvent -> scoringEvent.score)
+                    .reduce(0, Integer::sum);
         }
     }
 }

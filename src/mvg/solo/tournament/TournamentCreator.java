@@ -1,15 +1,13 @@
 package mvg.solo.tournament;
 
-import mvg.solo.data.GroupData;
-import mvg.solo.data.TournamentProgressions;
 import mvg.solo.team.Team;
 import mvg.solo.util.BackgroundColour;
-import mvg.solo.util.Reader;
+import mvg.solo.util.TextReader;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-final class TournamentCreator implements Reader {
+final class TournamentCreator implements TextReader {
 
     private static final AtomicBoolean groupsInstantiated = new AtomicBoolean(false);
     private static final AtomicBoolean knockoutMatchesInstantiated = new AtomicBoolean(false);
@@ -20,7 +18,7 @@ final class TournamentCreator implements Reader {
 
             // This map has key equal to the Team name and value equal to their Group letter
             // Note that the List<String> has only one value
-            Map<String, List<String>> groupsMap = textToMap(GroupData.getGroupData(), 2);
+            Map<String, List<String>> groupsMap = textToMap("groupData.txt", 2);
 
             // If textToMap is null, propagate this failure
             if (groupsMap == null) {
@@ -88,7 +86,7 @@ final class TournamentCreator implements Reader {
         // This is a map of matchId to a singleton List containing the matchId for the
         // Match that the winner of the current matchId will progress to
         Map<String, List<String>> knockoutProgressionsMap =
-                textToMap(TournamentProgressions.getKnockoutProgressions(), 2);
+                textToMap("knockoutProgressions.txt", 2);
 
         // If textToMap gives null, propagate this error
         if (knockoutProgressionsMap == null) {
@@ -122,7 +120,7 @@ final class TournamentCreator implements Reader {
         // matchId of the QUARTER_FINAL they progress to
 
         Map<String, List<String>> groupProgressions =
-                textToMap(TournamentProgressions.getGroupProgressions(), 2);
+                textToMap("groupProgressions.txt", 2);
 
         Map<String, Integer> outputMap = new HashMap<>();
 

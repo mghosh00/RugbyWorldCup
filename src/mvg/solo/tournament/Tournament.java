@@ -53,7 +53,7 @@ public final class Tournament {
         groupProgressions.putAll(Objects.requireNonNull(tournamentCreator.getGroupProgressions()));
     }
 
-    public Team beginTournament() {
+    public Team playTournament() {
 
         // ONE OF THE SIX BIG METHODS
         // Basic idea - run each Group first, and then work out the best Teams. Then send them to the

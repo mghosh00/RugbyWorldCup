@@ -13,7 +13,7 @@ public class Main {
         Tournament tournament = new Tournament();
         Map<Team, Integer> teamWins = new HashMap<>();
         for (int i = 0; i < 1000; i ++) {
-            Team winner = tournament.beginTournament();
+            Team winner = tournament.playTournament();
             if (!teamWins.containsKey(winner)) {
                 teamWins.put(winner, 1);
             } else {
@@ -21,5 +21,7 @@ public class Main {
             }
         }
         System.out.println(teamWins);
+
+
     }
 }
