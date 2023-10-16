@@ -29,6 +29,11 @@ public record Team(String countryName, double rankingPoints, Colour homeKit, Col
         return teamMap;
     }
 
+    public static Team getTeam(String teamName) {
+        Map<String, Team> teams = getTeams();
+        return teams.get(teamName);
+    }
+
     @Override
     public String toString() {
         StringBuilder countryCamelCase = new StringBuilder();
