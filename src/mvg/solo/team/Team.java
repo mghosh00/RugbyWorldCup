@@ -6,7 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public record Team(String countryName, double rankingPoints, Colour homeKit, Colour alternateKit) {
+public class Team {
+    private final String countryName;
+    private double ratingPoints;
+    private final Colour homeKit;
+    private final Colour alternateKit;
+
+    public Team(String countryName, double ratingPoints, Colour homeKit, Colour alternateKit) {
+        this.countryName = countryName;
+        this.ratingPoints = ratingPoints;
+        this.homeKit = homeKit;
+        this.alternateKit = alternateKit;
+    }
 
     public static Map<String, Team> getTeams() {
         // We return a map here, which will be useful for instantiating the groups. This also creates
@@ -52,5 +63,25 @@ public record Team(String countryName, double rankingPoints, Colour homeKit, Col
 
     public String alternateKitString() {
         return alternateKit + toString() + Colour.RESET;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public double getRatingPoints() {
+        return ratingPoints;
+    }
+
+    public Colour getHomeKit() {
+        return homeKit;
+    }
+
+    public Colour getAlternateKit() {
+        return alternateKit;
+    }
+
+    void updateRatingPoints(double changeInPoints) {
+        ratingPoints = ratingPoints + changeInPoints;
     }
 }
