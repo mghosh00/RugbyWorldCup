@@ -39,8 +39,8 @@ final class KnockoutMatch extends Match {
 
         // Add the loser if there is not one already
         if (loser == null) {
-            loser = (winner == getTeamResults().firstKey())
-                    ? getTeamResults().lastKey() : getTeamResults().firstKey();
+            loser = (winner == Team.getTeam(getTeamResults().firstKey()))
+                    ? Team.getTeam(getTeamResults().lastKey()) : Team.getTeam(getTeamResults().firstKey());
         }
         System.out.println(winner + " is the winner!!");
 

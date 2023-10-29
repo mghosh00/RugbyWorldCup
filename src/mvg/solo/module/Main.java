@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        runTournaments(100);
+        runTournaments(1);
 
     }
 
@@ -16,7 +16,7 @@ public class Main {
         ResultsRecorder recorder = new ResultsRecorder();
         for (int i = 0; i < numTournaments; i ++) {
             Team winner = tournament.playTournament();
-            recorder.recordWin(winner.countryName());
+            recorder.recordWin(winner.getCountryName());
         }
         recorder.writeToFile();
     }

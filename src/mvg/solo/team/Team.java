@@ -82,6 +82,20 @@ public class Team {
     }
 
     void updateRatingPoints(double changeInPoints) {
-        ratingPoints = ratingPoints + changeInPoints;
+        ratingPoints = ratingPoints + Math.round(changeInPoints * 100.00) / 100.00;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Two teams are equal if they share the same name
+        if (!(obj instanceof Team team)) {
+            return false;
+        }
+        return countryName.equals(team.countryName);
+    }
+
+    @Override
+    public int hashCode() {
+        return countryName.hashCode();
     }
 }

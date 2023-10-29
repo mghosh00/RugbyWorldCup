@@ -12,8 +12,8 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
     private static int LAST_ID = 1;
     private final int id;
     private final Round round;
-    private final NavigableMap<Team, List<ScoringEvent>> teamResults =
-            new TreeMap<>(Comparator.comparing(Team::getRatingPoints));
+    private final NavigableMap<String, List<ScoringEvent>> teamResults =
+            new TreeMap<>(Comparator.comparing(teamName -> Team.getTeam(teamName).getRatingPoints()));
     private static final int MAX_SCORING_EVENTS = 8;
 
     // If this is changed, it must be between 0 and 60 (as the minimal ranking is around 61)
@@ -33,7 +33,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
 
         // We only wish to add team to the Match if both Match spots have not already been filled up
         if (teamResults.keySet().size() < 2) {
-            teamResults.putIfAbsent(team, new ArrayList<>());
+            teamResults.putIfAbsent(team.getCountryName(), new ArrayList<>());
         } else {
             System.out.println("Match already occupied by two nations, cannot add " + team);
         }
@@ -56,7 +56,8 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         }
 
         // Here, we find both teams and determine which one has a better world ranking
-        Team betterTeam = teamResults.lastKey(); Team worseTeam = teamResults.firstKey();
+        Team betterTeam = Team.getTeam(teamResults.lastKey());
+        Team worseTeam = Team.getTeam(teamResults.firstKey());
 
         // Deciding on kits
         String betterTeamColoured = determineKits().get(0);
@@ -80,8 +81,8 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         }
 
         // Find the total score for each team using the totalScore method on ScoringEvent
-        int betterTeamScore = ScoringEvent.totalScore(teamResults.get(betterTeam));
-        int worseTeamScore = ScoringEvent.totalScore(teamResults.get(worseTeam));
+        int betterTeamScore = ScoringEvent.totalScore(teamResults.get(betterTeam.getCountryName()));
+        int worseTeamScore = ScoringEvent.totalScore(teamResults.get(worseTeam.getCountryName()));
 
         // Finally, work out which team won (if any). If there is a winner, return that
         // team, otherwise return null for a draw
@@ -92,11 +93,18 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         } else {
             winner = (betterTeamScore > worseTeamScore) ? betterTeam : worseTeam;
         }
+
+        // TO BE DELETED
+        System.out.println(betterTeam + ": " + betterTeam.getRatingPoints());
+        System.out.println(worseTeam + ": " + worseTeam.getRatingPoints());
         
         // Here, for the dynamic rating changes, we will change the rankings of both Teams. This
         // functionality is encapsulated in the RatingsUpdater class
         RatingsUpdater updater = new RatingsUpdater(betterTeam, betterTeamScore, worseTeam, worseTeamScore);
         updater.changeRankings();
+
+        System.out.println(betterTeam + ": " + betterTeam.getRatingPoints());
+        System.out.println(worseTeam + ": " + worseTeam.getRatingPoints());
         
         evaluateMatch(winner);
 
@@ -112,7 +120,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         // SUBJECT TO CHANGE BASED ON CHOICE OF ALGORITHM
 
         // Collect the current scores from the teamResults map
-        List<ScoringEvent> scoringEvents = teamResults.get(currentTeam);
+        List<ScoringEvent> scoringEvents = teamResults.get(currentTeam.getCountryName());
 
         // For this ScoringEvent, we must randomise whether it is a TRY or a PENALTY
         double signedDifference = currentTeam.getRatingPoints() - otherTeam.getRatingPoints();
@@ -169,7 +177,8 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
     }
 
     List<String> determineKits() {
-        Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
+        Team team1 = Team.getTeam(teamResults.firstKey());
+        Team team2 = Team.getTeam(teamResults.lastKey());
         String team1Coloured = team1.homeKitString(); String team2Coloured = team2.homeKitString();
         if (team1.getHomeKit() == team2.getHomeKit()) {
             team2Coloured = team2.alternateKitString();
@@ -177,13 +186,13 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         return List.of(team1Coloured, team2Coloured);
     }
 
-    NavigableMap<Team, List<ScoringEvent>> getTeamResults() {
+    NavigableMap<String, List<ScoringEvent>> getTeamResults() {
         // Important to make a deep copy here
-        NavigableMap<Team, List<ScoringEvent>> deepCopyMap =
-                new TreeMap<>(Comparator.comparing(Team::getRatingPoints));
-        for (Team team : teamResults.keySet()) {
-            List<ScoringEvent> scoringEventsCopy = List.copyOf(teamResults.get(team));
-            deepCopyMap.put(team, scoringEventsCopy);
+        NavigableMap<String, List<ScoringEvent>> deepCopyMap =
+                new TreeMap<>(Comparator.comparing(teamName -> Team.getTeam(teamName).getRatingPoints()));
+        for (String teamName : teamResults.keySet()) {
+            List<ScoringEvent> scoringEventsCopy = List.copyOf(teamResults.get(teamName));
+            deepCopyMap.put(teamName, scoringEventsCopy);
         }
         return deepCopyMap;
     }
@@ -197,8 +206,10 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
     }
 
     String formattedResults() {
-        Team team1 = teamResults.firstKey(); Team team2 = teamResults.lastKey();
-        var team1Scores = teamResults.get(team1); var team2Scores = teamResults.get(team2);
+        Team team1 = Team.getTeam(teamResults.firstKey());
+        Team team2 = Team.getTeam(teamResults.lastKey());
+        var team1Scores = teamResults.get(team1.getCountryName());
+        var team2Scores = teamResults.get(team2.getCountryName());
         String team1Coloured = determineKits().get(0); String team2Coloured = determineKits().get(1);
         String firstLine = this + " Results:::\n\n";
         String secondLine = String.format("%-25s%-2d - %2d%25s%n", team1Coloured,

@@ -64,9 +64,9 @@ final class Group {
                      Team otherTeam) {
         // Here we simply pass the work on to the TableEntry for the inputted Team
         // (and create a Map in the process to do this)
-        Map<Team, TableEntry> tableMap = new HashMap<>();
-        table.forEach(tableEntry -> tableMap.putIfAbsent(tableEntry.team, tableEntry));
-        tableMap.get(team).updateEntry(outcome, pointsDifference, bonusPoints, otherTeam);
+        Map<String, TableEntry> tableMap = new HashMap<>();
+        table.forEach(tableEntry -> tableMap.putIfAbsent(tableEntry.team.getCountryName(), tableEntry));
+        tableMap.get(team.getCountryName()).updateEntry(outcome, pointsDifference, bonusPoints, otherTeam);
     }
 
     void playMatches() {
@@ -247,14 +247,14 @@ final class Group {
 
             // 4. The worldRankings will determine the higher Team as of 04/09/23
             // Note that this will return a unique value unless two teams have exactly
-            // the same rankingPoints(), in which case we will compare the names (to sort
+            // the same getRatingPoints(), in which case we will compare the names (to sort
             // a bug)
-            if (team.rankingPoints() != o.team.rankingPoints()) {
-                return (int) ((o.team.rankingPoints() - team.rankingPoints()) * 100);
+            if (team.getRatingPoints() != o.team.getRatingPoints()) {
+                return (int) ((o.team.getRatingPoints() - team.getRatingPoints()) * 100);
             }
 
             // Note that we should never reach this line, but is here just in case
-            return o.team.countryName().compareTo(team.countryName());
+            return o.team.getCountryName().compareTo(team.getCountryName());
 
         }
 
