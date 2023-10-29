@@ -20,7 +20,6 @@ public interface TextReader {
         var listOfLines = scanner.tokens()
                 .map(line -> Arrays.asList(line.split("[\\p{Punct}&&[^._-]]")))
                 .toList();
-        System.out.println(listOfLines);
 
         // Next, provided all the lists are of the desired length (so the text is of the correct
         // format) we add each list to the returnMap

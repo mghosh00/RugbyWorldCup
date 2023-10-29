@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Tidying up">
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/data/results.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mvg/solo/module/ResultsRecorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/data/ratingPoints.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mvg/solo/team/RatingsUpdater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/results.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/worldRankings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/data/initialWorldRankings.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/MainWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/TextReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/TextReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mvg/solo/util/TextWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="tableSet" />
+        <entry key="$PROJECT_DIR$" value="feature-dynamic-rankings" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +59,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="mvg.solo.team" />
       <recent name="mvg.solo.tournament" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -73,8 +80,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Writer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mvg.solo.util.Writer" />
+    <configuration name="TextWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mvg.solo.util.TextWriter" />
       <module name="RugbyWorldCup" />
       <extension name="coverage">
         <pattern>
@@ -115,7 +122,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Writer" />
+      <item itemvalue="Application.TextWriter" />
       <item itemvalue="Application.Match" />
       <item itemvalue="Application.mvg.solo.module.Main" />
       <item itemvalue="Application.mvg.solo.tournament.TestMain" />
@@ -123,8 +130,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.mvg.solo.module.Main" />
-        <item itemvalue="Application.Match" />
         <item itemvalue="Application.mvg.solo.tournament.TestMain" />
+        <item itemvalue="Application.Match" />
+        <item itemvalue="Application.TextWriter" />
         <item itemvalue="Application.mvg.solo.tournament.TestMain" />
       </list>
     </recent_temporary>

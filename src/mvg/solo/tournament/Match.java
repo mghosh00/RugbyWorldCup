@@ -1,5 +1,6 @@
 package mvg.solo.tournament;
 
+import mvg.solo.team.RatingsUpdater;
 import mvg.solo.team.Team;
 import mvg.solo.util.BernoulliDistribution;
 import mvg.solo.util.BinomialDistribution;
@@ -12,7 +13,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
     private final int id;
     private final Round round;
     private final NavigableMap<Team, List<ScoringEvent>> teamResults =
-            new TreeMap<>(Comparator.comparing(Team::rankingPoints));
+            new TreeMap<>(Comparator.comparing(Team::initialRatingPoints));
     private static final int MAX_SCORING_EVENTS = 8;
 
     // If this is changed, it must be between 0 and 60 (as the minimal ranking is around 61)
@@ -61,7 +62,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         String betterTeamColoured = determineKits().get(0);
         String worseTeamColoured = determineKits().get(1);
         System.out.printf("Welcome to %s, %s vs %s!!%n", this, betterTeamColoured, worseTeamColoured);
-        double betterTeamRanking = betterTeam.rankingPoints(); double worseTeamRanking = worseTeam.rankingPoints();
+        double betterTeamRanking = betterTeam.initialRatingPoints(); double worseTeamRanking = worseTeam.initialRatingPoints();
 
         // Next, we randomize a number of ScoringEvents for each team based on their rankings
         // The number of scoring events for each team is determined by a private function
@@ -91,6 +92,19 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         } else {
             winner = (betterTeamScore > worseTeamScore) ? betterTeam : worseTeam;
         }
+
+        // TO BE DELETED
+        System.out.println(betterTeam + ": " + betterTeam.getRatingPoints());
+        System.out.println(worseTeam + ": " + worseTeam.getRatingPoints());
+
+        // Here, for the dynamic rating changes, we will change the rankings of both Teams. This
+        // functionality is encapsulated in the RatingsUpdater class
+        RatingsUpdater updater = new RatingsUpdater(betterTeam, betterTeamScore, worseTeam, worseTeamScore);
+        updater.changeRankings();
+
+        System.out.println(betterTeam + ": " + betterTeam.getRatingPoints());
+        System.out.println(worseTeam + ": " + worseTeam.getRatingPoints());
+
         evaluateMatch(winner);
 
         // IMPORTANT TO NOTE: both GroupMatch and KnockoutMatch will now call evaluateMatch and
@@ -108,7 +122,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
         List<ScoringEvent> scoringEvents = teamResults.get(currentTeam);
 
         // For this ScoringEvent, we must randomise whether it is a TRY or a PENALTY
-        double signedDifference = currentTeam.rankingPoints() - otherTeam.rankingPoints();
+        double signedDifference = currentTeam.initialRatingPoints() - otherTeam.initialRatingPoints();
         ScoringEvent scoringEvent = tryOrPenalty(signedDifference);
 
         // Now, update the scoringEvents list (print statement is temporary)
@@ -156,7 +170,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
 
     private ScoringEvent conversionAttempt(Team currentTeam) {
         // So this will be between 0.4 and 0.7
-        double p = (currentTeam.rankingPoints() - 20) / 100;
+        double p = (currentTeam.initialRatingPoints() - 20) / 100;
         BernoulliDistribution bernoulli = new BernoulliDistribution(p);
         return bernoulli.nextBernoulli() == 1 ? ScoringEvent.CONVERSION : null;
     }
@@ -173,7 +187,7 @@ sealed abstract class Match permits KnockoutMatch, GroupMatch {
     NavigableMap<Team, List<ScoringEvent>> getTeamResults() {
         // Important to make a deep copy here
         NavigableMap<Team, List<ScoringEvent>> deepCopyMap =
-                new TreeMap<>(Comparator.comparing(Team::rankingPoints));
+                new TreeMap<>(Comparator.comparing(Team::initialRatingPoints));
         for (Team team : teamResults.keySet()) {
             List<ScoringEvent> scoringEventsCopy = List.copyOf(teamResults.get(team));
             deepCopyMap.put(team, scoringEventsCopy);

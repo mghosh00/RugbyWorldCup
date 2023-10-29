@@ -247,10 +247,10 @@ final class Group {
 
             // 4. The worldRankings will determine the higher Team as of 04/09/23
             // Note that this will return a unique value unless two teams have exactly
-            // the same rankingPoints(), in which case we will compare the names (to sort
+            // the same initialRatingPoints(), in which case we will compare the names (to sort
             // a bug)
-            if (team.rankingPoints() != o.team.rankingPoints()) {
-                return (int) ((o.team.rankingPoints() - team.rankingPoints()) * 100);
+            if (team.initialRatingPoints() != o.team.initialRatingPoints()) {
+                return (int) ((o.team.initialRatingPoints() - team.initialRatingPoints()) * 100);
             }
 
             // Note that we should never reach this line, but is here just in case

@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        runTournaments(100);
+        runTournaments(1);
 
     }
 
