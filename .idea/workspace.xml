@@ -4,52 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Tidying up">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Added Gradle functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RugbyWorldCup.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/groupData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/groupData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/groupProgressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/groupProgressions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/initialWorldRankings.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/initialWorldRankings.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/knockoutProgressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/knockoutProgressions.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/ratingPoints.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/ratingPoints.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/data/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/results.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/module/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/module/ResultsRecorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/module/ResultsRecorder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/RatingsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/team/RatingsUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/team/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/team/TeamCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/team/TeamCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/GroupMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/GroupMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/KnockoutMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/KnockoutMatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Outcome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/Outcome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/Round.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/TestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/Tournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/tournament/TournamentCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/tournament/TournamentCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/BackgroundColour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/BackgroundColour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/BernoulliDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/BernoulliDistribution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/BinomialDistribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/BinomialDistribution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/Colour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/Colour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/TextReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/TextReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mvg/solo/util/TextWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/util/TextWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,22 +83,22 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Run",
-    "Application.mvg.solo.module.Main.executor": "Run",
-    "Gradle.Build RugbyWorldCup.executor": "Run",
-    "Gradle.RugbyWorldCup [:Main.main()].executor": "Run",
-    "Gradle.RugbyWorldCup [build].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/matth/oxrse/metabolism",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.mvg.solo.module.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build RugbyWorldCup.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RugbyWorldCup [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RugbyWorldCup [build].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/matth/oxrse/metabolism&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
-}]]></component>
+}</component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="C:\Users\matth\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="a0a3fc0c-5fa6-4399-81b5-c41013fa3eb0" reportId="RugbyWorldCup/qodana/2024-01-20" />
@@ -353,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696607773337</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added Gradle functionality">
+      <option name="closed" value="true" />
+      <created>1705765796318</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705765796319</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,6 +344,7 @@
     <MESSAGE value="Tournament finished" />
     <MESSAGE value="Changed the data so that it comes from .txt files rather than from Strings" />
     <MESSAGE value="Tidying up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tidying up" />
+    <MESSAGE value="Added Gradle functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Gradle functionality" />
   </component>
 </project>
