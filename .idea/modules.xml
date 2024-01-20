@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RugbyWorldCup.iml" filepath="$PROJECT_DIR$/RugbyWorldCup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RugbyWorldCup.iml" filepath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RugbyWorldCup.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RugbyWorldCup.test.iml" filepath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.test.iml" />
     </modules>
   </component>
 </project>

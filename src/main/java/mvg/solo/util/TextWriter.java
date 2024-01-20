@@ -13,7 +13,7 @@ public class TextWriter {
     public static void writeToFile(String titleOfFile, String inputText,
                                     StandardOpenOption openOption) {
 
-        Path path = Path.of("src/mvg/solo/data/" + titleOfFile + ".txt");
+        Path path = Path.of("src/main/resources/data/" + titleOfFile + ".txt");
 
         try {
             Files.writeString(path, inputText, openOption);
@@ -24,7 +24,7 @@ public class TextWriter {
 
     public static void clearFile(String titleOfFile) {
 
-        Path path = Path.of("src/mvg/solo/data/" + titleOfFile + ".txt");
+        Path path = Path.of("src/main/resources/data/" + titleOfFile + ".txt");
 
         try {
             new FileWriter(path.toFile(), false).close();

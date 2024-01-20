@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main {
+        java {
+            srcDirs 'main/java'
+        }
+        resources {
+            srcDirs 'main/resources'
+        }
+    }
+
+    test {
+        java {
+            srcDirs 'test/java'
+        }
+    }
+}
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}

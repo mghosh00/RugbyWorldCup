@@ -36,13 +36,12 @@ public interface TextReader {
 
     default Map<String, List<String>> fileToMap(String fileName, int numValues) {
 
-        Path path = Path.of("src/mvg/solo/data/" + fileName);
+        Path path = Path.of("src/main/resources/data/" + fileName);
         try (Scanner scanner = new Scanner(path)) {
             return scannerToMap(scanner, numValues);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
 

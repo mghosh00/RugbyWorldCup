@@ -37,7 +37,7 @@ public class ResultsRecorder implements TextReader {
     }
 
     void writeToFile() {
-        Path path = Path.of("src/mvg/solo/data/results.txt");
+        Path path = Path.of("src/main/resources/data/results.txt");
         try {
             var listOfLines = currentResults.entrySet().stream()
                     .map(entry -> entry.getKey() + ":" + entry.getValue())
