@@ -17,11 +17,9 @@ jobs:
           distribution: 'temurin'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
       - name: Run Coverage
         run: |
-          chmod +x gradlew
+          chmod +x ./gradlew
           ./gradlew testCoverage
 
       - name: Add coverage to PR
