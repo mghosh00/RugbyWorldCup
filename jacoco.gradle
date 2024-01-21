@@ -14,7 +14,6 @@ jacocoTestReport {
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
-    sourceDirectories = fileTree(dir: 'src/main/RugbyWorldCup')
 }
 
 jacocoTestCoverageVerification {
