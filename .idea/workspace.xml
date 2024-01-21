@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Added jacoco test coverage">
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Jacoco fixes">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_11_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_11_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_3_12_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_inline_2_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/RugbyWorldCup.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jacoco.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jacoco.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvg/solo/team/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvg/solo/team/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/mvg/solo/team/TeamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mvg/solo/team/TeamTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +116,8 @@
     "Gradle.RugbyWorldCup [jacocoTestReport].executor": "Run",
     "Gradle.RugbyWorldCup [test].executor": "Run",
     "Gradle.TeamTest.executor": "Run",
+    "Gradle.TeamTest.getRatingPoints.executor": "Run",
+    "Gradle.TeamTest.getTeam.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -142,20 +160,7 @@
       <recent name="mvg.solo.team" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RugbyWorldCup [jacocoTestReport]">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mvg.solo.module.Main" />
-      <module name="RugbyWorldCup.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mvg.solo.module.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.TeamTest.getTeam">
     <configuration name="RugbyWorldCup [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -200,28 +205,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="RugbyWorldCup [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="TeamTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -249,20 +232,68 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="TeamTest.getRatingPoints" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;mvg.solo.team.TeamTest.getRatingPoints&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TeamTest.getTeam" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;mvg.solo.team.TeamTest.getTeam&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Gradle.RugbyWorldCup [jacocoTestCoverageVerification]" />
       <item itemvalue="Gradle.RugbyWorldCup [jacocoTestReport]" />
-      <item itemvalue="Gradle.RugbyWorldCup [test]" />
       <item itemvalue="Gradle.TeamTest" />
+      <item itemvalue="Gradle.TeamTest.getRatingPoints" />
+      <item itemvalue="Gradle.TeamTest.getTeam" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TeamTest.getTeam" />
+        <item itemvalue="Gradle.TeamTest.getRatingPoints" />
+        <item itemvalue="Gradle.TeamTest" />
         <item itemvalue="Gradle.RugbyWorldCup [jacocoTestReport]" />
         <item itemvalue="Gradle.RugbyWorldCup [jacocoTestCoverageVerification]" />
-        <item itemvalue="Gradle.RugbyWorldCup [test]" />
-        <item itemvalue="Gradle.TeamTest" />
-        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -407,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705851287552</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Jacoco fixes">
+      <option name="closed" value="true" />
+      <created>1705852037520</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705852037520</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -439,6 +478,7 @@
     <MESSAGE value="Added blank tests" />
     <MESSAGE value="Test with failure" />
     <MESSAGE value="Added jacoco test coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added jacoco test coverage" />
+    <MESSAGE value="Jacoco fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jacoco fixes" />
   </component>
 </project>

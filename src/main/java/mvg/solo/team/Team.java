@@ -79,4 +79,8 @@ public record Team(String countryName, double initialRatingPoints, Colour homeKi
     public String alternateKitString() {
         return alternateKit + toString() + Colour.RESET;
     }
+
+    public TeamCreator getCreator() {
+        return creator;
+    }
 }

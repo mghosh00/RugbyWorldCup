@@ -9,7 +9,7 @@ jacocoTestReport {
     dependsOn test
     description = "Generate Jacoco coverage reports after running tests."
     reports {
-        xml.required = false
+        xml.required = true
         csv.required = false
         html.required = true
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
