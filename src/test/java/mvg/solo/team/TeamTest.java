@@ -13,6 +13,7 @@ class TeamTest {
 
     @Test
     void getTeams() {
+        fail("Not yet implemented");
     }
 
     @Test
