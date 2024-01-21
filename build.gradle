@@ -10,6 +10,7 @@ repositories {
     mavenCentral()
 }
 test {
+    enabled = true
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }

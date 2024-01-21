@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Added jacoco test coverage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jacoco.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jacoco.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mvg/solo/team/TeamTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mvg/solo/team/TeamTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +96,8 @@
     "Gradle.Build RugbyWorldCup.executor": "Run",
     "Gradle.RugbyWorldCup [:Main.main()].executor": "Run",
     "Gradle.RugbyWorldCup [build].executor": "Run",
+    "Gradle.RugbyWorldCup [jacocoTestCoverageVerification].executor": "Run",
+    "Gradle.RugbyWorldCup [jacocoTestReport].executor": "Run",
     "Gradle.RugbyWorldCup [test].executor": "Run",
     "Gradle.TeamTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
@@ -138,7 +142,7 @@
       <recent name="mvg.solo.team" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TeamTest">
+  <component name="RunManager" selected="Gradle.RugbyWorldCup [jacocoTestReport]">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mvg.solo.module.Main" />
       <module name="RugbyWorldCup.main" />
@@ -152,21 +156,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mvg.solo.module.Main" />
-      <module name="RugbyWorldCup" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mvg.solo.module.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RugbyWorldCup [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="RugbyWorldCup [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -177,7 +167,29 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value="jacocoTestCoverageVerification" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="RugbyWorldCup [jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jacocoTestReport" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -238,19 +250,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Gradle.RugbyWorldCup [jacocoTestCoverageVerification]" />
+      <item itemvalue="Gradle.RugbyWorldCup [jacocoTestReport]" />
       <item itemvalue="Gradle.RugbyWorldCup [test]" />
       <item itemvalue="Gradle.TeamTest" />
-      <item itemvalue="Gradle.RugbyWorldCup [build]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TeamTest" />
+        <item itemvalue="Gradle.RugbyWorldCup [jacocoTestReport]" />
+        <item itemvalue="Gradle.RugbyWorldCup [jacocoTestCoverageVerification]" />
         <item itemvalue="Gradle.RugbyWorldCup [test]" />
+        <item itemvalue="Gradle.TeamTest" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Gradle.RugbyWorldCup [build]" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -387,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705850996263</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added jacoco test coverage">
+      <option name="closed" value="true" />
+      <created>1705851287552</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1705851287552</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
