@@ -10,10 +10,8 @@ jacocoTestReport {
     description = "Generate Jacoco coverage reports after running tests."
     reports {
         xml.required = true
-        csv.required = false
-        html.required = true
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-        xml.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        html.required = false
+        xml.destination(file("$buildDir/reports/jacoco/jacocoTestReport.xml"))
     }
     finalizedBy jacocoTestCoverageVerification
 }
@@ -43,3 +41,4 @@ jacocoTestCoverageVerification {
 
 build.dependsOn(jacocoTestReport)
 build.dependsOn(jacocoTestCoverageVerification)
+check.dependsOn(jacocoTestReport)
