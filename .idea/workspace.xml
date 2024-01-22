@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Update tests">
-      <change beforePath="$PROJECT_DIR$/jacoco.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/jacoco.gradle" afterDir="false" />
+    <list default="true" id="10def129-5d1a-4c94-ac67-826a819847cf" name="Changes" comment="Update jacoco.gradle">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -435,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705879592296</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Update jacoco.gradle">
+      <option name="closed" value="true" />
+      <created>1705880237591</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1705880237591</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -469,6 +477,7 @@
     <MESSAGE value="Added jacoco test coverage" />
     <MESSAGE value="Jacoco fixes" />
     <MESSAGE value="Update tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update tests" />
+    <MESSAGE value="Update jacoco.gradle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update jacoco.gradle" />
   </component>
 </project>
